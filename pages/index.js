@@ -32,7 +32,7 @@ let formElement = document.querySelector('.popup__form');
 let nameInput = document.querySelector('.popup__item_name');
 let jobInput = document.querySelector('.popup__item_info');
 
-nameInput.value = 'Marina Belan';
+nameInput.value = 'Марина Белан';
 jobInput.value = 'Путешественник-любитель';
 
 function formSubmitHandler (evt) {

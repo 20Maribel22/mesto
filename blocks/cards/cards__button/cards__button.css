@@ -1,0 +1,22 @@
+.cards__button {
+ background-image: url(../../../images/like-button.svg);
+ background-repeat: no-repeat;
+ object-fit: cover;
+ background-position: 50%;
+ background-color: #fff;
+ box-shadow: none;
+ border: none;
+ width: 22px;
+ height: 19px;
+ cursor: pointer;
+}
+
+.cards__button:active {
+ background-image: url(../../../images/Union.svg);
+}
+
+.cards__button:hover {
+ opacity: 0.6;
+}
+
+

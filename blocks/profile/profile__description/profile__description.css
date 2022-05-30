@@ -1,0 +1,14 @@
+.profile__description {
+ display: grid;
+ grid-template-columns: 275px 25px;
+ flex: 1 1 auto;
+ margin: 0;
+ padding: 0;
+}
+
+@media (max-width: 425px) {
+  .profile__description{
+   grid-template-columns: 200px 25px;
+   padding: 22px 0 36px;
+  }
+}

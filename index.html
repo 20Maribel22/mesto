@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проект Mesto</title>
+    <link rel="stylesheet" href="./pages/index.css">
+</head>
+<body class="page">
+  <header class="header">
+    <img class="header__logo" src="./images/header-logo.svg" alt="Логотип">
+  </header>
+  <main class="content">
+    <section class="profile">
+      <img class="profile__image" src="./images/avatar.png" alt="Аватар пользователя">
+      <div class="profile__description">
+        <h1 class="profile__name">Marina Belan</h1>
+        <button class="profile__button profile__button_edit"></button>
+        <p class="profile__text">Путешественник-любитель</p>
+      </div>
+      <button class="profile__button profile__button_add"></button>
+    </section>
+    <section class="places">
+     <ul class="cards">
+       <li class="cards__item"><img class="cards__image" src="./images/photo-Baikal.png" alt="Байкал"><div class="cards__description"><h2 class="cards__title">Байкал</h2><button class="cards__button"></button></div></li>
+       <li class="cards__item"><img class="cards__image" src="./images/photo-Altay.png" alt="Алтай"><div class="cards__description"><h2 class="cards__title">Алтай</h2><button class="cards__button"></button></div></li>
+       <li class="cards__item"><img class="cards__image" src="./images/photo-Kamchatka.png" alt="Камчатка"><div class="cards__description"><h2 class="cards__title">Камчатка</h2><button class="cards__button"></button></div></li>
+       <li class="cards__item"><img class="cards__image" src="./images/photo-Krasnoyarsk.png" alt="Красноярск"><div class="cards__description"><h2 class="cards__title">Красноярск</h2><button class="cards__button"></button></div></li>
+       <li class="cards__item"><img class="cards__image" src="./images/photo-Onega.png" alt="Онежское озеро"><div class="cards__description"><h2 class="cards__title">Онежское озеро</h2><button class="cards__button"></button></div></li>
+       <li class="cards__item"><img class="cards__image" src="./images/photo-Sochi.png" alt="Сочи"><div class="cards__description"><h2 class="cards__title">Сочи</h2><button class="cards__button"></button></div></li>
+     </ul>
+    </section>
+  </main>
+  <footer class="footer">
+    <p class="footer__copyright">&copy;  2022 Марина Белан</p>
+  </footer>
+  <div class="popup popup_opened">
+    <div class="popup__container">
+      <button class="popup__close-button"></button>
+      <form class="popup__form">
+       <h3 class="popup__title">Редактировать профиль</h3>
+       <label class="popup__field">
+         <input  class="popup__item popup__item_name"   placeholder="Имя" required>
+       </label>
+       <label class="popup__field">
+        <input  class="popup__item popup__item_info"  placeholder="О себе" required>
+      </label>
+      <button class="popup__save-button">Сохранить</button>
+      </form>
+   </div>
+  </div>
+  <script src="./pages/index.js"></script>
+</body>
+</html>

@@ -9,8 +9,7 @@
  display: flex;
  justify-content: center;
  align-items: center;
-}
-
-.popup_opened {
  display: none;
 }
+
+

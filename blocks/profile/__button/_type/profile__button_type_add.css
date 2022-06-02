@@ -9,8 +9,8 @@
 }
 
 @media (max-width: 650px) {
-  .profile__button_type_add {
-   width: 100%;
-   background-size: 16px;
-  }
- }
+ .profile__button_type_add {
+     width: 100%;
+     background-size: 16px;
+    }
+}

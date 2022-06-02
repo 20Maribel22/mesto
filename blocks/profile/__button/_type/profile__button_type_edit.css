@@ -9,15 +9,15 @@
 }
 
 @media (max-width: 650px) {
-  .profile__button_type_edit{
-   margin: 0 0 8px 15px;
-  }
+ .profile__button_type_edit {
+     margin: 0 0 8px 15px;
+    }
 }
 
 @media (max-width: 425px) {
-  .profile__button_type_edit{
-   width: 18px;
-   height: 18px;
-   margin: 0 0 7px 10px;
-  }
+ .profile__button_type_edit {
+     width: 18px;
+     height: 18px;
+     margin: 0 0 7px 10px;
+    }
 }

@@ -8,6 +8,7 @@
  text-overflow: ellipsis;
  white-space: nowrap;
  overflow: hidden;
+ max-width: 294px;
 }
 
 @media (max-width: 650px) {
@@ -21,6 +22,7 @@
    font-size: 27px;
    line-height: 33px;
    padding-top: 28px;
-   margin: 0 0 0 35px;
+   margin: 0;
+   max-width: 189px;
   }
 }

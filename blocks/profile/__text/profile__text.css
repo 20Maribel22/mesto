@@ -8,6 +8,7 @@
  text-overflow: ellipsis;
  white-space: nowrap;
  overflow: hidden;
+ max-width: 336px;
 }
 
 @media (max-width: 650px) {
@@ -20,7 +21,8 @@
   .profile__text{
    font-size: 14px;
    line-height: 17px;
-   margin: 0 0 0 35px;
+   margin: 0;
    padding: 8px 0 31px;
+   max-width: 282px;
   }
 }

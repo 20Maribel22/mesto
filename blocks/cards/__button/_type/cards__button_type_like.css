@@ -1,10 +1,14 @@
 .cards__button_type_like {
   background-image: url(../../../../images/like-button.svg);
+  width: 22px;
+  height: 19px;
+  object-fit: cover;
+  background-position: 50%;
 }
 
-.cards__button_type_like:active {
+/*.cards__button_type_like:active {
   background-image: url(../../../../images/Union.svg);
-}
+}*/
 
 .cards__button_type_like:hover {
   opacity: 0.6;

@@ -25,12 +25,12 @@
     </section>
     <section class="places">
      <ul class="cards">
-       <li class="cards__item"><img class="cards__image" src="./images/photo-Baikal.png" alt="Байкал"><div class="cards__description"><h2 class="cards__title">Байкал</h2><button type="button" class="cards__button cards__button_type_like"></button></div></li>
-       <li class="cards__item"><img class="cards__image" src="./images/photo-Altay.png" alt="Алтай"><div class="cards__description"><h2 class="cards__title">Алтай</h2><button type="button" class="cards__button cards__button_type_like"></button></div></li>
-       <li class="cards__item"><img class="cards__image" src="./images/photo-Kamchatka.png" alt="Камчатка"><div class="cards__description"><h2 class="cards__title">Камчатка</h2><button type="button" class="cards__button cards__button_type_like"></button></div></li>
-       <li class="cards__item"><img class="cards__image" src="./images/photo-Krasnoyarsk.png" alt="Красноярск"><div class="cards__description"><h2 class="cards__title">Красноярск</h2><button type="button" class="cards__button cards__button_type_like"></button></div></li>
-       <li class="cards__item"><img class="cards__image" src="./images/photo-Onega.png" alt="Онежское озеро"><div class="cards__description"><h2 class="cards__title">Онежское озеро</h2><button type="button" class="cards__button cards__button_type_like"></button></div></li>
-       <li class="cards__item"><img class="cards__image" src="./images/photo-Sochi.png" alt="Сочи"><div class="cards__description"><h2 class="cards__title">Сочи</h2><button type="button" class="cards__button cards__button_type_like"></button></div></li>
+      <!--<li class="cards__item"><img class="cards__image" src="./images/photo-Baikal.png" alt="Байкал"><div class="cards__description"><h2 class="cards__title">Байкал</h2><button type="button" class="cards__button cards__button_type_like"></button></div><button type="button" class="cards__button cards__button_type_del"></button></li>
+       <li class="cards__item"><img class="cards__image" src="./images/photo-Altay.png" alt="Алтай"><div class="cards__description"><h2 class="cards__title">Алтай</h2><button type="button" class="cards__button cards__button_type_like"></button></div><button type="button" class="cards__button cards__button_type_del"></button></li>
+       <li class="cards__item"><img class="cards__image" src="./images/photo-Kamchatka.png" alt="Камчатка"><div class="cards__description"><h2 class="cards__title">Камчатка</h2><button type="button" class="cards__button cards__button_type_like"></button></div><button type="button" class="cards__button cards__button_type_del"></button></li>
+       <li class="cards__item"><img class="cards__image" src="./images/photo-Krasnoyarsk.png" alt="Красноярск"><div class="cards__description"><h2 class="cards__title">Красноярск</h2><button type="button" class="cards__button cards__button_type_like"></button></div><button type="button" class="cards__button cards__button_type_del"></button></li>
+       <li class="cards__item"><img class="cards__image" src="./images/photo-Onega.png" alt="Онежское озеро"><div class="cards__description"><h2 class="cards__title">Онежское озеро</h2><button type="button" class="cards__button cards__button_type_like"></button></div><button type="button" class="cards__button cards__button_type_del"></button></li>
+       <li class="cards__item"><img class="cards__image" src="./images/photo-Sochi.png" alt="Сочи"><div class="cards__description"><h2 class="cards__title">Сочи</h2><button type="button" class="cards__button cards__button_type_like"></button></div><button type="button" class="cards__button cards__button_type_del"></button></li>-->
      </ul>
     </section>
   </main>
@@ -52,6 +52,33 @@
       </form>
    </div>
   </div>
+  <div class="popup popup__new-place">
+    <div class="popup__new-container">
+      <button type="button" class="popup__button popup__button_type_place"></button>
+      <form class="popup__new-form" name="form1">
+       <h3 class="popup__new-title">Новое место</h3>
+       <label class="popup__field">
+         <input  class="popup__item popup__item_type_newname" name="newname"  placeholder="Название" required>
+       </label>
+       <label class="popup__field">
+        <input  class="popup__item popup__item_type_link" name="link"  placeholder="Ссылка на картинку" required>
+      </label>
+      <button type="submit" class="popup__button popup__button_type_newsave">Создать</button>
+      </form>
+   </div>
+  </div>
+  <div class="popup popup__image">
+    <div class="popup__image-container">
+      <button type="button" class="popup__button popup__button_type_image"></button>
+      <div class="popup__description">
+        <img src="#"  class="popup__photo" alt="">
+        <h3 class="popup__photo-title"></h3>
+      </div>
+    </div>
+  </div>
+  <template id="card-template">
+    <li class="cards__item"><img class="cards__image" src="#" alt=" "><div class="cards__description"><h2 class="cards__title"></h2><button type="button" class="cards__button cards__button_type_like"></button></div><button type="button" class="cards__button cards__button_type_del"></button></li>
+  </template>
   <script src="./scripts/index.js"></script>
 </body>
 </html>

@@ -6,6 +6,7 @@
   top: 20px;
   width: 18px;
   height: 19px;
+  z-index: 2;
 }
 
 .cards__button_type_del:hover {

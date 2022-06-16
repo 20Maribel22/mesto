@@ -1,9 +1,10 @@
 .cards__button_type_like {
   background-image: url(../../../../images/like-button.svg);
-  width: 22px;
+  width: 27px;
   height: 19px;
   object-fit: cover;
   background-position: 50%;
+  background-repeat: no-repeat;
 }
 
 /*.cards__button_type_like:active {

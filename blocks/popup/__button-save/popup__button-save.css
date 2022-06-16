@@ -1,4 +1,4 @@
-.popup__button_type_newsave {
+.popup__button-save {
   background-color: #000;
   color: #fff;
   border: none;
@@ -12,14 +12,17 @@
   box-sizing: border-box;
   width: 100%;
   margin: 45px 0 0;
+  padding: 0;
+  border: none;
+  cursor: pointer;
 }
 
-.popup__button_type_newsave:hover {
+.popup__button-save:hover {
   opacity: 0.8;
 }
 
 @media screen and (max-width: 425px) {
-   .popup__button_type_newsave {
+   .popup__button-save {
     margin: 40px 0 0;
     height: 46px;
     width: 238px;

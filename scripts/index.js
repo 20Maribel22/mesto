@@ -141,7 +141,7 @@ function openPopup(popup) {
   document.addEventListener('keydown', closePopupEsc);
   popup.addEventListener('click', closePopupOverlay);
   popup.classList.add('popup_opened');
-  isValid();
+  enableValidation(config);
 }
 
 

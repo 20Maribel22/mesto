@@ -36,12 +36,12 @@
       <form class="popup__form" name="record" novalidate>
        <h3 class="popup__title">Редактировать профиль</h3>
        <label class="popup__field">
-         <input  type="name"  class="popup__item popup__item_type_name" id="name-item"  name="name"  placeholder="Имя" minlength="2" maxlength="40"  required>
+         <input  type="text"  class="popup__item popup__item_type_name" id="name-item"  name="name"  placeholder="Имя" minlength="2" maxlength="40"  required>
          <span class="popup__item-error name-item-error"></span>
         </label>
        <label class="popup__field">
-         <input  type="text" class="popup__item popup__item_type_info" id="text-item"  name="job"  placeholder="О себе" minlength="2" maxlength="200" required>
-         <span class="popup__item-error text-item-error"></span>
+         <input  type="text" class="popup__item popup__item_type_info" id="job-item"  name="job"  placeholder="О себе" minlength="2" maxlength="200" required>
+         <span class="popup__item-error job-item-error"></span>
         </label>
       <button type="submit"  class="popup__button-save">Сохранить</button>
       </form>
@@ -53,12 +53,12 @@
       <form class="popup__form popup__form_theme_place" name="cards" novalidate>
        <h3 class="popup__title">Новое место</h3>
        <label class="popup__field">
-         <input type="text" class="popup__item popup__item_type_newname" id="text-item" name="newname"  placeholder="Название" minlength="2" maxlength="30" required>
-         <span class="popup__item-error text-item-error"></span>
+         <input type="text" class="popup__item popup__item_type_newname" id="newname-item" name="newname"  placeholder="Название" minlength="2" maxlength="30" required>
+         <span class="popup__item-error newname-item-error"></span>
         </label>
        <label class="popup__field">
-        <input type="url"  class="popup__item popup__item_type_link" id="url-item" pattern="https://.*"  name="link"  placeholder="Ссылка на картинку" required>
-        <span class="popup__item-error url-item-error"></span>
+        <input type="url"  class="popup__item popup__item_type_link" id="link-item" pattern="https://.*"  name="link"  placeholder="Ссылка на картинку" required>
+        <span class="popup__item-error link-item-error"></span>
       </label>
       <button type="submit" class="popup__button-save">Создать</button>
       </form>

@@ -1,4 +1,5 @@
-const enableValidation = {
+
+const config = {
   formSelector: '.popup__form',
   inputSelector: '.popup__item',
   submitButtonSelector: '.popup__button-save',
@@ -7,107 +8,7 @@ const enableValidation = {
   errorClass: 'popup__item-error_active'
 };
 
-
 const showInputError = (formElement, inputElement,errorMessage) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-
-  inputElement.classList.add(enableValidation.inputErrorClass);
-  errorElement.textContent = errorMessage;
-  errorElement.classList.add(enableValidation.errorClass);
-
-};
-
-
-const hideInputError = (formElement, inputElement) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-
-  errorElement.textContent = '';
-  inputElement.classList.remove(enableValidation.inputErrorClass);
-  errorElement.classList.remove(enableValidation.errorClass);
-
-};
-
-
-const checkInputValidity = (formElement, inputElement) => {
-
-  if (!inputElement.validity.valid) {
-
-    showInputError(formElement, inputElement, inputElement.validationMessage);
-  } else {
-
-    hideInputError(formElement, inputElement);
-  }
-
-};
-
-const hasInvalidInput = (inputList) => {
-  return inputList.some ((inputElement) => {
-    return !inputElement.validity.valid;
-  });
-};
-
-const toggleButtonState = (inputList, buttonElement) => {
-
-  if (hasInvalidInput(inputList)) {
-
-    buttonElement.setAttribute('disabled', true);
-    buttonElement.classList.add(enableValidation.inactiveButtonClass);
-  } else {
-
-    buttonElement.removeAttribute('disabled', false);
-    buttonElement.classList.remove(enableValidation.inactiveButtonClass);
-  }
-};
-
-
-
-const setEventListeners = (formElement) => {
-
-
-  const inputList = Array.from(formElement.querySelectorAll(enableValidation.inputSelector));
-
-  const buttonElement = formElement.querySelector(enableValidation.submitButtonSelector);
-
-
- toggleButtonState(inputList, buttonElement);
-
-
-
-  inputList.forEach((inputElement) => {
-
-    inputElement.addEventListener('input', () => {
-
-      checkInputValidity(formElement, inputElement);
-
-      toggleButtonState(inputList, buttonElement);
-
-    });
-
-  });
-
-};
-
-const isValid = () => {
-
-  const formList = Array.from(document.querySelectorAll(enableValidation.formSelector));
-
-
-  formList.forEach((formElement) => {
-    formElement.addEventListener('submit', (evt) => {
-
-      evt.preventDefault();
-    });
-    setEventListeners(formElement);
-  });
-};
-
-
-
-
-/*
-
-
-const showInputError = (formElement, inputElement,errorMessage, config) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
 
   inputElement.classList.add(config.inputErrorClass);
@@ -117,7 +18,7 @@ const showInputError = (formElement, inputElement,errorMessage, config) => {
 };
 
 
-const hideInputError = (formElement, inputElement,config) => {
+const hideInputError = (formElement, inputElement) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
 
   errorElement.textContent = '';
@@ -145,7 +46,7 @@ const hasInvalidInput = (inputList) => {
   });
 };
 
-const toggleButtonState = (inputList, buttonElement,config) => {
+const toggleButtonState = (inputList, buttonElement) => {
 
   if (hasInvalidInput(inputList)) {
 
@@ -160,7 +61,7 @@ const toggleButtonState = (inputList, buttonElement,config) => {
 
 
 
-const setEventListeners = (formElement,config) => {
+const setEventListeners = (formElement) => {
 
 
   const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
@@ -196,22 +97,15 @@ const enableValidation = (config) => {
 
       evt.preventDefault();
     });
-    setEventListeners(formElement,config);
+    setEventListeners(formElement);
   });
 };
 
 
 
 
-enableValidation({
-  formSelector: '.popup__form',
-  inputSelector: '.popup__item',
-  submitButtonSelector: '.popup__button-save',
-  inactiveButtonClass: 'popup__button_inactive',
-  inputErrorClass: 'popup__item_type_error',
-  errorClass: 'popup__item-error_active'
-});
 
 
-*/
+
+
 

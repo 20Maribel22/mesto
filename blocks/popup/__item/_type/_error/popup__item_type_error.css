@@ -1,3 +1,5 @@
 .popup__item_type_error {
   border-bottom-color: red;
+  margin: 13px 0 0;
+  padding: 0 0 13px 0;
 }

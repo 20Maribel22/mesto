@@ -1,4 +1,3 @@
-
 const config = {
   formSelector: '.popup__form',
   inputSelector: '.popup__item',
@@ -8,7 +7,19 @@ const config = {
   errorClass: 'popup__item-error_active'
 };
 
-const showInputError = (formElement, inputElement,errorMessage) => {
+
+const enableValidation = (config) => {
+
+  const formList = Array.from(document.querySelectorAll(config.formSelector));
+
+
+  formList.forEach((formElement) => {
+    setEventListeners(formElement,config);
+  });
+
+};
+// Функция, которая добавляет класс с ошибкой
+const showInputError = (formElement, inputElement, errorMessage, config) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
 
   inputElement.classList.add(config.inputErrorClass);
@@ -17,8 +28,8 @@ const showInputError = (formElement, inputElement,errorMessage) => {
 
 };
 
-
-const hideInputError = (formElement, inputElement) => {
+// Функция, которая удаляет класс с ошибкой
+const hideInputError = (formElement, inputElement,config) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
 
   errorElement.textContent = '';
@@ -27,31 +38,39 @@ const hideInputError = (formElement, inputElement) => {
 
 };
 
-
-const checkInputValidity = (formElement, inputElement) => {
+// Функция, которая проверяет валидность поля
+const checkInputValidity = (formElement, inputElement,config) => {
 
   if (!inputElement.validity.valid) {
 
-    showInputError(formElement, inputElement, inputElement.validationMessage);
+    showInputError(formElement, inputElement, inputElement.validationMessage,config);
   } else {
 
-    hideInputError(formElement, inputElement);
+    hideInputError(formElement, inputElement,config);
   }
-
 };
 
+// Функция принимает массив полей
 const hasInvalidInput = (inputList) => {
   return inputList.some ((inputElement) => {
     return !inputElement.validity.valid;
   });
 };
 
-const toggleButtonState = (inputList, buttonElement) => {
+// Функция, которая отключает кнопку
+const disableButton = (buttonElement,config) => {
+  buttonElement.setAttribute('disabled', true);
+  buttonElement.classList.add(config.inactiveButtonClass);
+
+};
+
+//Функция принимает массив полей ввода
+// и элемент кнопки, состояние которой нужно менять
+const toggleButtonState = (inputList, buttonElement, config) => {
 
   if (hasInvalidInput(inputList)) {
 
-    buttonElement.setAttribute('disabled', true);
-    buttonElement.classList.add(config.inactiveButtonClass);
+    disableButton(buttonElement,config);
   } else {
 
     buttonElement.removeAttribute('disabled', false);
@@ -59,9 +78,8 @@ const toggleButtonState = (inputList, buttonElement) => {
   }
 };
 
-
-
-const setEventListeners = (formElement) => {
+// Слушатель событий
+const setEventListeners = (formElement, config) => {
 
 
   const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
@@ -69,17 +87,13 @@ const setEventListeners = (formElement) => {
   const buttonElement = formElement.querySelector(config.submitButtonSelector);
 
 
- toggleButtonState(inputList, buttonElement);
-
-
-
   inputList.forEach((inputElement) => {
 
     inputElement.addEventListener('input', () => {
 
-      checkInputValidity(formElement, inputElement);
+      checkInputValidity(formElement, inputElement,config);
 
-      toggleButtonState(inputList, buttonElement);
+      toggleButtonState(inputList, buttonElement,config);
 
     });
 
@@ -87,23 +101,17 @@ const setEventListeners = (formElement) => {
 
 };
 
-const enableValidation = (config) => {
-
-  const formList = Array.from(document.querySelectorAll(config.formSelector));
-
-
-  formList.forEach((formElement) => {
-    formElement.addEventListener('submit', (evt) => {
-
-      evt.preventDefault();
-    });
-    setEventListeners(formElement);
-  });
-};
+enableValidation({
+  formSelector: '.popup__form',
+  inputSelector: '.popup__item',
+  submitButtonSelector: '.popup__button-save',
+  inactiveButtonClass: 'popup__button_inactive',
+  inputErrorClass: 'popup__item_type_error',
+  errorClass: 'popup__item-error_active'
+});
 
 
-
-
+enableValidation(config);
 
 
 

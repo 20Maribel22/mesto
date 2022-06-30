@@ -1,3 +1,4 @@
+
 const initialCards = [
   {
     name: 'Архыз',
@@ -42,12 +43,11 @@ initialCards.forEach(function (item) {
 
 function createCard(name, link) {
   const placeElement = itemTemplate.cloneNode(true);
-
+  const imageElement = placeElement.querySelector('.cards__image');
 
   placeElement.querySelector('.cards__title').textContent = name;
-  placeElement.querySelector('.cards__image').src = link;
-  placeElement.querySelector('.cards__image').alt = name;
-
+  imageElement.src = link;
+  imageElement.alt = name;
 
 
   placeElement.querySelector('.cards__button_type_like').addEventListener('click', function (evt){
@@ -126,14 +126,13 @@ function closePopupEsc(evt) {
 function closePopup(popup) {
   document.removeEventListener('keydown', closePopupEsc);
   popup.removeEventListener('click', closePopupOverlay);
-  popup.classList.toggle('popup_opened')
+  popup.classList.remove('popup_opened')
 }
 
 
 function closePopupOverlay(evt) {
   if (evt.target === evt.currentTarget) {
-    const popup = document.querySelector('.popup_opened');
-    closePopup(popup);
+    closePopup(evt.currentTarget);
   }
 }
 
@@ -141,7 +140,6 @@ function openPopup(popup) {
   document.addEventListener('keydown', closePopupEsc);
   popup.addEventListener('click', closePopupOverlay);
   popup.classList.add('popup_opened');
-  enableValidation(config);
 }
 
 
@@ -157,13 +155,16 @@ popupFormName.addEventListener('submit', handleProfileFormSubmit);
 
 
 buttonEdit.addEventListener('click', function() {
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileInfo.textContent;
+
+   nameInput.value = profileName.textContent;
+   jobInput.value = profileInfo.textContent;
 
   openPopup(popupProfile);
 })
 
 buttonAdd.addEventListener('click', function() {
+
+  disableButton(formContainerCards.submit,config);
   openPopup(popupPlace);
 })
 
@@ -173,6 +174,7 @@ cardItem.addEventListener('click', function() {
 
 
 popupCloseButtonProfile.addEventListener('click', function() {
+
   closePopup(popupProfile);
 })
 
@@ -185,7 +187,6 @@ popupCloseButtonImage.addEventListener('click', function() {
 
   closePopup(popupCard);
 })
-
 
 
 

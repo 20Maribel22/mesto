@@ -60,7 +60,7 @@ function createCard(name, link) {
   });
 
 
-  placeElement.querySelector('.cards__image').addEventListener('click',  () => {
+  imageElement.addEventListener('click', () => {
     popupImg.src = link;
     popupTitle.textContent = name;
     popupImg.alt = name;

@@ -1,5 +1,27 @@
-import './index.css';
-import initialCards  from "../utils/initialCards.js";
+import "./index.css";
+import initialCards from "../utils/initialCards.js";
+import {
+  buttonEdit,
+  buttonAdd,
+  popupProfile,
+  popupPlace,
+  popupCard,
+  popupCloseButtonProfile,
+  popupCloseButtonPlace,
+  popupCloseButtonImage,
+  popupImg,
+  popupTitle,
+  profileName,
+  profileInfo,
+  nameInput,
+  jobInput,
+  formAddName,
+  formAddCards,
+  formInputName,
+  formInputImage,
+  cardsContainer,
+} from "../utils/constants.js";
+
 import Card from "../components/Card.js";
 import Section from "../components/Section.js";
 import FormValidator from "../components/FormValidator.js";
@@ -7,35 +29,6 @@ import config from "../utils/config.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
-
-const buttonEdit = document.querySelector(".profile__button_type_edit");
-const buttonAdd = document.querySelector(".profile__button_type_add");
-const popupProfile = document.querySelector(".popup_theme_profile");
-const popupPlace = document.querySelector(".popup_theme_place");
-const popupCard = document.querySelector(".popup_theme_image");
-const popupCloseButtonProfile = document.querySelector(
-  ".popup__button-close_theme_profile"
-);
-const popupCloseButtonPlace = document.querySelector(
-  ".popup__button-close_theme_place"
-);
-const popupCloseButtonImage = document.querySelector(
-  ".popup__button-close_theme_image"
-);
-const popupImg = popupCard.querySelector(".popup__photo");
-const popupTitle = popupCard.querySelector(".popup__photo-title");
-const profileName = document.querySelector(".profile__name");
-const profileInfo = document.querySelector(".profile__text");
-const nameInput = document.querySelector(".popup__item_type_name");
-const jobInput = document.querySelector(".popup__item_type_info");
-const popupContainer = document.querySelector(".popup__container");
-const popupFormName = document.querySelector(".popup__form");
-const formAddName = popupContainer.querySelector("form[name=record]");
-const formContainerCards = document.querySelector(".popup__form_theme_place");
-const formAddCards = popupPlace.querySelector("form[name=cards]");
-const formInputName = document.querySelector(".popup__item_type_newname");
-const formInputImage = document.querySelector(".popup__item_type_link");
-const cardsContainer = document.querySelector(".cards");
 
 //добавляем валидацию формам
 const formValidatorAddName = new FormValidator(config, formAddName);
@@ -52,6 +45,7 @@ const popupImage = new PopupWithImage(
   popupImg,
   popupTitle
 );
+popupImage.setEventListeners();
 
 const popupFormProfile = new PopupWithForm(
   popupProfile,
@@ -87,14 +81,15 @@ const cardsList = new Section(
 
 cardsList.renderItems();
 
-function handleCardsSubmit(data) {
+function handleCardsSubmit(e) {
   cardsList.addNewItem(
-    createCard(data[0], data[1], "#card-template", handleCardClick)
+    createCard(formInputName.value, formInputImage.value, "#card-template", handleCardClick)
   );
 }
 
-function handleProfileFormSubmit(data) {
-  userInfoData.setUserInfo(data[0], data[1]);
+
+function handleProfileFormSubmit({name, job}) {
+  userInfoData.setUserInfo({name, job});
 }
 
 function handleCardClick(name, link) {

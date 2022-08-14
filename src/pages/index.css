@@ -10,11 +10,14 @@
 @import '../blocks/profile/__name/profile__name.css';
 @import '../blocks/profile/__text/profile__text.css';
 @import '../blocks/profile/__button/profile__button.css';
+@import '../blocks/profile/__avatar/profile__avatar.css';
 @import '../blocks/profile/__button/_type/profile__button_type_add.css';
 @import '../blocks/profile/__button/_type/profile__button_type_edit.css';
 @import '../blocks/places/places.css';
 @import '../blocks/cards/cards.css';
 @import '../blocks/cards/__item/cards__item.css';
+@import '../blocks/cards/__like-gpoup/cards__like-gpoup.css';
+@import '../blocks/cards/__like-number/cards__like-number.css';
 @import '../blocks/cards/__image/cards__image.css';
 @import '../blocks/cards/__description/cards__description.css';
 @import '../blocks/cards/__title/cards__title.css';

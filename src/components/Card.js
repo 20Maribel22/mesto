@@ -1,9 +1,24 @@
 export default class Card {
-  constructor(name, link, selectorTemplate, handleCardClick) {
-    this._name = name;
-    this._link = link;
+  constructor(data, selectorTemplate, handler) {
+    this._data = data;
     this._selectorTemplate = selectorTemplate;
-    this._handleCardClick = handleCardClick;
+    this._onImageClick = handler.imageClick;
+    this._onRemove = handler.remove;
+    this._onLike = handler.like;
+    this._element = this._getTemplate();
+
+    this._image = this._element.querySelector(".cards__image");
+    this._title = this._element.querySelector(".cards__title");
+    this._likeButton = this._element.querySelector(".cards__button_type_like");
+    this._removeButton = this._element.querySelector(".cards__button_type_del");
+    this._likeCount = this._element.querySelector(".cards__like-number");
+
+    // Добавим данные
+    this._image.src = this._data.link;
+    this._image.alt = this._data.name;
+    this._title.textContent = this._data.name;
+    this._likeCount.textContent = this._data.likes.length;
+    this._setEventListeners();
   }
 
   _getTemplate() {
@@ -18,46 +33,46 @@ export default class Card {
   }
 
   generateCard() {
-    // Запишем разметку в приватное поле _element.
-    // Так у других элементов появится доступ к ней.
-    this._element = this._getTemplate();
-    this._setEventListeners();
-
-    this._image = this._element.querySelector(".cards__image");
-    this._title = this._element.querySelector(".cards__title");
-
-    // Добавим данные
-    this._image.src = this._link;
-    this._image.alt = this._name;
-    this._title.textContent = this._name;
-
-    // Вернём элемент наружу
     return this._element;
   }
 
   _setEventListeners() {
-    this._element
-      .querySelector(".cards__button_type_like")
-      .addEventListener("click", this._handleLikeClick);
+    this._likeButton.addEventListener("click", () => {
+      this._handlerLike();
+    });
 
-    this._element
-      .querySelector(".cards__button_type_del")
-      .addEventListener("click", () => {
-        this._handleDeleteClick();
+    const isOwner = this._data.owner._id === this._data.currentUserId;
+    if (isOwner) {
+      this._removeButton.addEventListener("click", () => {
+        this._onRemove(this._data, () => this._handlerRemove());
       });
+    }else{
+      this._removeButton.remove();
+    }
 
-    this._element
-      .querySelector(".cards__image")
-      .addEventListener("click", () => {
-        this._handleCardClick(this._name, this._link);
-      });
+    this._image.addEventListener("click", () => {
+      this._onImageClick(this._data);
+    });
   }
 
-  _handleLikeClick = (evt) => {
-    evt.target.classList.toggle("cards__button_type_like-active");
-  };
+  _handlerLike() {
+    console.log("Вызываю onLike");
+    this._onLike(this._data, (newLikes) => {
+      console.log("Работаю onLike",{newLikes});
+      this._data.likes = newLikes;
+      this._likeCount.textContent = this._data.likes.length;
+      const isLiked = this._data.likes.find(
+        (item) => item._id === this._data.currentUserId
+      );
+      if (isLiked) {
+        this._likeButton.classList.remove("cards__button_type_like-active");
+      } else {
+        this._likeButton.classList.add("cards__button_type_like-active");
+      }
+    });
+  }
 
-  _handleDeleteClick() {
+  _handlerRemove() {
     this._element.remove();
     this._element = null;
   }

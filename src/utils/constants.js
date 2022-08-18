@@ -6,7 +6,7 @@ export const popupProfile = document.querySelector(".popup_theme_profile");
 export const popupPlace = document.querySelector(".popup_theme_place");
 export const popupCard = document.querySelector(".popup_theme_image");
 export const popupAvatar = document.querySelector(".popup_theme_avatar");
-export const popupBtn = document.querySelector(".popup_theme_delete");
+export const popupDel = document.querySelector(".popup_theme_delete");
 export const popupCloseButtonProfile = document.querySelector(
   ".popup__button-close_theme_profile"
 );
@@ -39,3 +39,4 @@ export const formAddCards = popupPlace.querySelector("form[name=cards]");
 export const formInputName = document.querySelector(".popup__item_type_newname");
 export const formInputImage = document.querySelector(".popup__item_type_link");
 export const cardsContainer = document.querySelector(".cards");
+export const buttonDeleteConfirm = document.querySelector(".popup__button-save_yes");

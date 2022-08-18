@@ -26,20 +26,20 @@ export default class Api {
       .then((res) => this._handleResponse(res));
   }
 
- setUserInfo(data) {
+ setUserInfo({name, about}) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
-      body: JSON.stringify({ name: data.name, about: data.info })
+      body: JSON.stringify({ name, about })
     })
       .then((res) => this._handleResponse(res));
   }
 
-  setNewCard(item) {
+  setNewCard({name, link}) {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
       headers: this._headers,
-      body: JSON.stringify(item)
+      body: JSON.stringify({name, link})
     })
       .then((res) => this._handleResponse(res));
   }
@@ -62,7 +62,7 @@ export default class Api {
   }
 
   likeCard(id) {
-    console.log(`${this._baseUrl}/cards/${id}/likes`, this._headers)
+    
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: 'PUT',
       headers: this._headers,

@@ -47,3 +47,4 @@
 @import '../blocks/popup/__image-container/popup__image-container.css';
 @import '../blocks/popup/__photo/popup__photo.css';
 @import '../blocks/popup/__photo-title/popup__photo-title.css';
+@import '../blocks/popup/__title/_del/popup__title_del.css';

@@ -141,47 +141,62 @@ api
   });
 
 function handleLikeClick(currentData, likeCallback) {
-  api.likeCard(currentData._id).then((updatedData) => {
-    likeCallback(updatedData.likes);
-  });
+  api
+    .likeCard(currentData._id)
+    .then((updatedData) => {
+      likeCallback(updatedData.likes);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 }
 
 function handleLikeRemove(currentData, likeCallback) {
-  api.likeRemove(currentData._id).then((updatedData) => {
-    likeCallback(updatedData.likes);
-  });
+  api
+    .likeRemove(currentData._id)
+    .then((updatedData) => {
+      likeCallback(updatedData.likes);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 }
 
 function handleOpenConfirmPopup(currentData, removeCallback) {
-  buttonDeleteConfirm.addEventListener("click", function () {
-    handleDelClick(currentData, removeCallback);
-  });
-  popupConfirm.open();
+  popupConfirm.open(currentData, removeCallback);
 }
 
-function handleDelClick(currentData, removeCallback) {
-  api.deleteCard(currentData._id).then((updatedData) => {
-    removeCallback(updatedData.likes);
-    popupConfirm.close();
-  });
+function deleteFormCard(currentData, removeCallback) {
+  api
+    .deleteCard(currentData._id)
+    .then((updatedData) => {
+      removeCallback(updatedData.remove);
+      popupConfirm.close();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 }
 
 function handleCardsSubmit(data) {
-  console.log(data);
+  popupFormCard.addSaving();
   api
     .setNewCard({ name: data.newname, link: data.link })
     .then((res) => {
       cardsList.addNewItem(
         createCard(res, "#card-template", {
           imageClick: handleCardClick,
-          remove: handleDelClick,
+          remove: handleOpenConfirmPopup,
           like: handleLikeClick,
+          removeLike: handleLikeRemove,
         })
       );
+      popupFormCard.close();
     })
     .catch((err) => {
       console.log(err);
-    });
+    })
+    .finally(() => popupFormCard.deleteSaving());
 }
 
 function handleProfileFormSubmit({ name, job }) {
@@ -217,13 +232,6 @@ function handleCardClick({ name, link }) {
   popupImage.open({ data: { name, link } });
 }
 
-function deleteFormCard(id, cardElement) {
-  api.deleteCard(id).then(() => {
-    cardsContainer.deleteItem(cardElement);
-    popupConfirm.close();
-  });
-}
-
 // попап редактирования профиля
 buttonEdit.addEventListener("click", function () {
   const currentData = userInfoData.getUserInfo();
@@ -245,3 +253,14 @@ buttonEditAvatar.addEventListener("click", function () {
   formValidatorAddAvatar.deleteMistakes();
   popupFormAvatar.open();
 });
+
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([res, items]) => {
+    userInfoData.setUserInfo(res);
+    userInfoData.setUserAvatar(res);
+    currentUserId = res._id;
+    cardsList.renderItems(items, res._id);
+  })
+  .catch((err) => {
+    console.log(err);
+  });

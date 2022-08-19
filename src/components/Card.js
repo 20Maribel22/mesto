@@ -19,7 +19,7 @@ export default class Card {
       (item) => item._id === this._data.currentUserId
     );
 
-    
+
     this._image.src = this._data.link;
     this._image.alt = this._data.name;
     this._title.textContent = this._data.name;
@@ -43,6 +43,7 @@ export default class Card {
   }
 
   _setEventListeners() {
+
     this._likeButton.addEventListener("click", () => {
       this._handlerLike();
     });
@@ -90,4 +91,6 @@ export default class Card {
     this._element.remove();
     this._element = null;
   }
+
+ 
 }

@@ -2,6 +2,7 @@ export default class Popup {
   constructor(popupSelector, buttonClose) {
     this._popup = popupSelector;
     this._closeButton = buttonClose;
+    this._saveButton = this._popup.querySelector('.popup__button-save');
     this._handleEscClose = this._handleEscClose.bind(this);
   }
 
@@ -37,8 +38,8 @@ export default class Popup {
     this._saveButton.textContent = 'Сохранение...';
   }
 
-  deleteSaving() {
-    this._saveButton.textContent = 'Сохранить';
+  deleteSaving(saveButtonTitle) {
+    this._saveButton.textContent = saveButtonTitle;
   }
 
 }

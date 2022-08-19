@@ -95,18 +95,7 @@ const popupFormAvatar = new PopupWithForm(
   popupCloseButtonAvatar
 );
 
-let currentUserId = null;
-api
-  .getUserInfo()
-  .then((res) => {
-    currentUserId = res._id;
-    userInfoData.setUserInfo(res);
-    userInfoData.setUserAvatar(res);
-    api.getInitialCards();
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+let currentUserId = 0;
 
 const createCard = (data) => {
   data.currentUserId = currentUserId;
@@ -131,14 +120,6 @@ const cardsList = new Section(
   cardsContainer
 );
 
-api
-  .getInitialCards()
-  .then((items) => {
-    cardsList.renderItems(items);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
 
 function handleLikeClick(currentData, likeCallback) {
   api
@@ -167,15 +148,17 @@ function handleOpenConfirmPopup(currentData, removeCallback) {
 }
 
 function deleteFormCard(currentData, removeCallback) {
+  popupConfirm.addSaving();
   api
     .deleteCard(currentData._id)
-    .then((updatedData) => {
-      removeCallback(updatedData.remove);
+    .then(() => {
+      removeCallback();
       popupConfirm.close();
     })
     .catch((err) => {
       console.log(err);
-    });
+    })
+    .finally(() => popupConfirm.deleteSaving('Да'));
 }
 
 function handleCardsSubmit(data) {
@@ -196,7 +179,7 @@ function handleCardsSubmit(data) {
     .catch((err) => {
       console.log(err);
     })
-    .finally(() => popupFormCard.deleteSaving());
+    .finally(() => popupFormCard.deleteSaving('Создать'));
 }
 
 function handleProfileFormSubmit({ name, job }) {
@@ -210,7 +193,7 @@ function handleProfileFormSubmit({ name, job }) {
     .catch((err) => {
       console.log(err);
     })
-    .finally(() => popupFormProfile.deleteSaving());
+    .finally(() => popupFormProfile.deleteSaving('Сохранить'));
 }
 
 function handleAvatarFormSubmit({ avatar }) {
@@ -225,7 +208,7 @@ function handleAvatarFormSubmit({ avatar }) {
     .catch((err) => {
       console.log(err);
     })
-    .finally(() => popupFormAvatar.deleteSaving());
+    .finally(() => popupFormAvatar.deleteSaving('Сохранить'));
 }
 
 function handleCardClick({ name, link }) {
@@ -256,6 +239,7 @@ buttonEditAvatar.addEventListener("click", function () {
 
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([res, items]) => {
+
     userInfoData.setUserInfo(res);
     userInfoData.setUserAvatar(res);
     currentUserId = res._id;

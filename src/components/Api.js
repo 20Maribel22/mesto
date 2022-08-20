@@ -62,7 +62,7 @@ export default class Api {
   }
 
   likeCard(id) {
-    
+
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: 'PUT',
       headers: this._headers,

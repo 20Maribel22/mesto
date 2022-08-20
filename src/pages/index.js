@@ -120,7 +120,6 @@ const cardsList = new Section(
   cardsContainer
 );
 
-
 function handleLikeClick(currentData, likeCallback) {
   api
     .likeCard(currentData._id)
@@ -149,6 +148,7 @@ function handleOpenConfirmPopup(currentData, removeCallback) {
 
 function deleteFormCard(currentData, removeCallback) {
   popupConfirm.addSaving();
+
   api
     .deleteCard(currentData._id)
     .then(() => {
@@ -158,7 +158,7 @@ function deleteFormCard(currentData, removeCallback) {
     .catch((err) => {
       console.log(err);
     })
-    .finally(() => popupConfirm.deleteSaving('Да'));
+    .finally(() => popupConfirm.deleteSaving("Да"));
 }
 
 function handleCardsSubmit(data) {
@@ -179,7 +179,7 @@ function handleCardsSubmit(data) {
     .catch((err) => {
       console.log(err);
     })
-    .finally(() => popupFormCard.deleteSaving('Создать'));
+    .finally(() => popupFormCard.deleteSaving("Создать"));
 }
 
 function handleProfileFormSubmit({ name, job }) {
@@ -193,7 +193,7 @@ function handleProfileFormSubmit({ name, job }) {
     .catch((err) => {
       console.log(err);
     })
-    .finally(() => popupFormProfile.deleteSaving('Сохранить'));
+    .finally(() => popupFormProfile.deleteSaving("Сохранить"));
 }
 
 function handleAvatarFormSubmit({ avatar }) {
@@ -208,7 +208,7 @@ function handleAvatarFormSubmit({ avatar }) {
     .catch((err) => {
       console.log(err);
     })
-    .finally(() => popupFormAvatar.deleteSaving('Сохранить'));
+    .finally(() => popupFormAvatar.deleteSaving("Сохранить"));
 }
 
 function handleCardClick({ name, link }) {
@@ -239,7 +239,6 @@ buttonEditAvatar.addEventListener("click", function () {
 
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([res, items]) => {
-
     userInfoData.setUserInfo(res);
     userInfoData.setUserAvatar(res);
     currentUserId = res._id;
